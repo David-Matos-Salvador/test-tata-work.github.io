@@ -5,7 +5,7 @@ export const enter = createAction('[Task] enter');
 
 export const selectedTask = createAction('[Task] selectedTask', props<{ idTask: number }>());
 
-export const clearSelectedTask = createAction('[Task] clearSelectedTask');
+// export const clearSelectedTask = createAction('[Task] clearSelectedTask');
 
 export const addOrEditTask = createAction('[Task] add or Edit', props<{ task: Task }>());
 

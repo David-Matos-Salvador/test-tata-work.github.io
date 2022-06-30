@@ -12,9 +12,6 @@ const createTask = (tasks: Task[], task: Task) => [
   { ...task, id: tasks.length + 1 },
 ];
 const updateTask = (tasks: Task[], changes: Task) => {
-
-  console.log(changes);
-
   return tasks.map((task) => {
     return task.id == changes.id ? Object.assign({}, task, changes) : task;
   });
@@ -30,7 +27,7 @@ export const initialState: State = {
 
 export const taskReducer = createReducer(
   initialState,
-  on(TaskAction.enter, TaskAction.clearSelectedTask, (state, action) => {
+  on(TaskAction.enter, (state, action) => {
     return {
       ...state,
       activeTaskId: null,

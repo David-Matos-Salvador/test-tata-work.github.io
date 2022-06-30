@@ -9,6 +9,6 @@ export const selectedActiveTask = createSelector(
   selectAllTask,
   selectActiveTaskId,
   (tasks, taskId) => {
-    return tasks.find((task) => task.id === taskId || null);
+    return tasks.find((task) => task.id === taskId);
   }
 );

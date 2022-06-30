@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Task } from 'src/app/core/models/task.model';
 import { AppState } from 'src/app/store/reducers/app.state';
-import { selectedActiveTask } from 'src/app/store/selectors/login.selector';
+import { selectedActiveTask } from 'src/app/store/selectors/task.selector';
 import * as TaskAction from '../../../../store/actions/task.action';
 
 @Component({
@@ -19,7 +19,9 @@ export class AddTaskComponent implements OnInit {
     this.task$ = this.store.select(
       selectedActiveTask
     ) as unknown as Observable<Task>;
-    this.task$.subscribe((task) => (this.description = task?.description));
+    this.task$.subscribe(
+      (task) => (this.description = task?.description ? task.description : '')
+    );
   }
   addOrEditTask() {
     this.store.dispatch(
@@ -27,7 +29,8 @@ export class AddTaskComponent implements OnInit {
         task: { id: null, description: this.description },
       })
     );
-    this.store.dispatch(TaskAction.clearSelectedTask());
+    this.description = '';
+    // this.store.dispatch(TaskAction.clearSelectedTask());
   }
   buttonDisabled(): boolean {
     const value = this.description?.trim();

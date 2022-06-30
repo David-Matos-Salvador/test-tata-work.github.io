@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/core/models/task.model';
 import { AppState } from 'src/app/store/reducers/app.state';
-import { selectAllTask } from '../../../../store/selectors/login.selector';
+import { selectAllTask } from '../../../../store/selectors/task.selector';
 import * as TaskAction from '../../../../store/actions/task.action';
 @Component({
   selector: 'app-list-task',
