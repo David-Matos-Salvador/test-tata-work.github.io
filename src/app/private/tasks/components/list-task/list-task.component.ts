@@ -23,7 +23,6 @@ const styleBootstrap: string[] = [
 })
 export class ListTaskComponent implements OnInit {
   tasks$: Observable<Task[]>;
-  numColor = 0;
   constructor(
     private store: Store<AppState>
   ) {
@@ -38,11 +37,5 @@ export class ListTaskComponent implements OnInit {
   }
   clickAlert(task: Task) {
     this.store.dispatch(TaskAction.selectedTask({ idTask: task.id as number }));
-  }
-
-  ramdomStyle(): string {
-    const style = styleBootstrap[this.numColor % styleBootstrap.length];
-    this.numColor = this.numColor + 1;
-    return style;
   }
 }

@@ -16,9 +16,7 @@
         (click)="addOrEditTask()"
       >
         <img
-          src="/assets/icons/{{
-            !!(task$ | async)?.id ? 'edit.svg' : 'save.svg'
-          }}"
+          src="/assets/icons/{{ !!(id$ | async) ? 'edit.svg' : 'save.svg' }}"
           alt="save"
         />
       </button>
