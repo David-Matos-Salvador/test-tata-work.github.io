@@ -10,7 +10,7 @@
 <div class="main">
   <div class="col-md-6 col-sm-12">
     <div class="login-form">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="form-group">
           <label>User</label>
           <input
@@ -51,7 +51,7 @@
         <div class="text-danger" *ngIf="loginForm?.errors?.incorrecUser">
           Password or User incorrect.
         </div>
-        <button type="button" class="btn btn-black m-2" (click)="login()">
+        <button class="btn btn-black m-2" >
           Login
         </button>
         <button type="button" class="btn btn-secondary m-2">Register</button>

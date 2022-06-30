@@ -27,5 +27,10 @@ export class AddTaskComponent implements OnInit {
         task: { id: null, description: this.description },
       })
     );
+    this.store.dispatch(TaskAction.clearSelectedTask());
+  }
+  buttonDisabled(): boolean {
+    const value = this.description?.trim();
+    return value == undefined || value == null || value == '';
   }
 }

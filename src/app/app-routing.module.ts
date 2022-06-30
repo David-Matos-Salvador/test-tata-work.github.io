@@ -7,7 +7,7 @@ const routes: Routes = [
     path: 'tasks',
     loadChildren: () =>
       import('./private/tasks/tasks.module').then((m) => m.TasksModule),
-    canActivate: [OnlyLoggedGuard],
+    // canActivate: [OnlyLoggedGuard],
   },
   {
     path: 'public',

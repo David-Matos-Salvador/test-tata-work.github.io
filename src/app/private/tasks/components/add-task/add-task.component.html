@@ -4,15 +4,27 @@
     <form class="d-flex">
       <input
         class="form-control me-2"
-        type="search"
+        type="text"
         placeholder="task"
-        aria-label="Search"
         [(ngModel)]="description"
-        [ngModelOptions]="{standalone: true}"
+        [ngModelOptions]="{ standalone: true }"
       />
-      <button class="btn btn-outline-success" type="button" (click)="addOrEditTask()">
-        +
+      <button
+        [disabled]="buttonDisabled()"
+        class="btn btn-primary"
+        type="button"
+        (click)="addOrEditTask()"
+      >
+        <img
+          src="/assets/icons/{{
+            !!(task$ | async)?.id ? 'edit.svg' : 'save.svg'
+          }}"
+          alt="save"
+        />
       </button>
     </form>
+    <div class="text-danger" *ngIf="description == ''">
+      empty field not allowed
+    </div>
   </div>
 </nav>
