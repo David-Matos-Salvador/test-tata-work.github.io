@@ -1,0 +1,61 @@
+<div class="sidenav">
+  <div class="login-main-text">
+    <h2>
+      Application<br />
+      Login Page
+    </h2>
+    <p>Login or register from here to access.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+    <div class="login-form">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label>User</label>
+          <input
+            formControlName="user"
+            type="text"
+            class="form-control"
+            placeholder="User Name"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              loginFormControl?.user?.touched &&
+              loginFormControl?.user?.errors?.required
+            "
+          >
+            User isrequired.</span
+          >
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              loginFormControl?.password?.touched &&
+              !!loginFormControl?.password?.errors?.required
+            "
+          >
+            Password is required.</span
+          >
+        </div>
+        <hr />
+        <div class="text-danger" *ngIf="loginForm?.errors?.incorrecUser">
+          Password or User incorrect.
+        </div>
+        <button type="button" class="btn btn-black m-2" (click)="login()">
+          Login
+        </button>
+        <button type="button" class="btn btn-secondary m-2">Register</button>
+      </form>
+    </div>
+  </div>
+</div>
