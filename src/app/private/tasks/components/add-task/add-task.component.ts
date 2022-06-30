@@ -14,6 +14,7 @@ import * as TaskAction from '../../../../store/actions/task.action';
 export class AddTaskComponent implements OnInit {
   task$!: Observable<Task>;
   description: string = '';
+
   constructor(private store: Store<AppState>) {}
   ngOnInit(): void {
     this.task$ = this.store.select(

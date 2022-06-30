@@ -1,10 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Task } from 'src/app/core/models/task.model';
 import { AppState } from 'src/app/store/reducers/app.state';
 import { selectAllTask } from '../../../../store/selectors/task.selector';
 import * as TaskAction from '../../../../store/actions/task.action';
+const styleBootstrap: string[] = [
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'primary',
+  'secondary',
+  'light',
+  'dark',
+];
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -12,7 +23,10 @@ import * as TaskAction from '../../../../store/actions/task.action';
 })
 export class ListTaskComponent implements OnInit {
   tasks$: Observable<Task[]>;
-  constructor(private store: Store<AppState>) {
+  numColor = 0;
+  constructor(
+    private store: Store<AppState>
+  ) {
     this.tasks$ = this.store.select(selectAllTask);
   }
 
@@ -24,5 +38,11 @@ export class ListTaskComponent implements OnInit {
   }
   clickAlert(task: Task) {
     this.store.dispatch(TaskAction.selectedTask({ idTask: task.id as number }));
+  }
+
+  ramdomStyle(): string {
+    const style = styleBootstrap[this.numColor % styleBootstrap.length];
+    this.numColor = this.numColor + 1;
+    return style;
   }
 }
